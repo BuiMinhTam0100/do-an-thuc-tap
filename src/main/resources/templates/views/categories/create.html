@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Fragment Modal Create</title>
+</head>
+<body>
+
+<div th:fragment="modalCreateCategory" class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCreateLabel">Thêm danh mục mới</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form th:action="@{/admin/categories/create}" th:object="${new_categories}" method="post">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Tên danh mục: <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" th:field="*{categoryName}" placeholder="Nhập tên danh mục (Ví dụ: Bia lon)" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

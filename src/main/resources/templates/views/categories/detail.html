@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${detail_categories.categoryName()}"></title>
+</head>
+<body>
+<div class="main-content" layout:fragment="content">
+    <section class="section">
+
+        <div class="section-header">
+            <h1>Chi tiết danh mục</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a th:href="@{/}">Trang chủ</a></div>
+                <div class="breadcrumb-item"><a th:href="@{/admin/suppliers}">Quản lý danh mục</a></div>
+                <div class="breadcrumb-item" th:text="${detail_categories.categoryName()}"></div>
+            </div>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <label>ID danh mục:</label>
+                                <p class="text-primary" th:text="${detail_categories.id}"></p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tên danh mục:</label>
+                                <p>
+                                    <span th:class="${#strings.isEmpty(detail_categories.categoryName()) ?
+                                        'text-danger' : 'text-primary'}"
+                                          th:text="${#strings.isEmpty(detail_categories.categoryName()) ?
+                                            'Chưa có dữ liệu' : detail_categories.categoryName()}">
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ngày tạo:</label>
+                                <p>
+                                    <span class="text-primary"
+                                          th:text="${detail_categories.createdAt() != null ? #temporals.format(detail_categories.createdAt(), 'dd-MM-yyyy HH:mm') : 'Không xác định'}">
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Lần cập nhật cuối:</label>
+                                <p>
+                                    <span class="text-primary"
+                                          th:text="${detail_categories.updatedAt() != null ? #temporals.format(detail_categories.updatedAt(), 'dd-MM-yyyy HH:mm') : 'Chưa cập nhật'}">
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ngày dừng hoạt động:</label>
+                                <p>
+                                    <span th:if="${detail_categories.deletedAt() == null}"
+                                          class="text-danger">Chưa dừng hoạt động</span>
+
+                                    <span th:if="${detail_categories.deletedAt() != null}"
+                                          class="text-primary"
+                                          th:text="${#temporals.format(detail_categories.deletedAt(), 'dd-MM-yyyy HH:mm')}"></span>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Trạng thái:</label>
+                                <p>
+                                    <span th:if="${detail_categories.deletedAt() == null}"
+                                          class="badge badge-success">Đang hoạt động</span>
+
+                                    <span th:if="${detail_categories.deletedAt() != null}"
+                                          class="badge badge-danger">Dừng hoạt động</span>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto mb-2">
+                                        <a th:href="@{/admin/categories}"
+                                           class="btn btn-primary btn-lg rounded-pill px-4 w-100">
+                                            <i class="fas fa-arrow-left"></i> Quay lại
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+</body>
+</html>
