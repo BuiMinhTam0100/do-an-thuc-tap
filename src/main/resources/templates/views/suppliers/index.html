@@ -33,6 +33,7 @@
                                         <th>Tên nhà cung cấp</th>
                                         <th>Số điện thoại</th>
                                         <th>Địa chỉ</th>
+                                        <th>Trạng thái</th>
                                         <th>Hành động</th>
                                     </tr>
                                     <tr th:each="s, iterStat : ${get_suppliers}">
@@ -40,6 +41,15 @@
                                         <td th:text="${s.supplierName()}"></td>
                                         <td th:text="${s.phone()}"></td>
                                         <td th:text="${s.address()}"></td>
+                                        <td>
+                                            <div th:if="${s.deletedAt() == null}" class="badge badge-success">
+                                                Đang hoạt động
+                                            </div>
+
+                                            <div th:if="${s.deletedAt() != null}" class="badge badge-danger">
+                                                Đã xóa
+                                            </div>
+                                        </td>
                                         <td>
                                             <a th:href="@{'/admin/suppliers/detail/' + ${s.id}}"
                                                class="btn btn-info btn-sm rounded-circle"

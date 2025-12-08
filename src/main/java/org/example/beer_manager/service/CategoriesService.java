@@ -45,6 +45,7 @@ public class CategoriesService {
     public CategoriesResponse delete(Integer id) {
         Category delete_by_id = findByID(id);
         delete_by_id.setDeletedAt(Instant.now());
+        categoryRepository.save(delete_by_id);
         return categoriesMapper.toResponse(delete_by_id);
     }
 

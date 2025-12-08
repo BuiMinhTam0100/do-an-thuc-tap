@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Sửa sản phẩm: ' + ${edit_product.productName()}"></title>
+</head>
+<body>
+<div class="main-content" layout:fragment="content">
+    <section class="section">
+
+        <div class="section-header">
+            <h1>Sửa sản phẩm</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a th:href="@{/}">Trang chủ</a></div>
+                <div class="breadcrumb-item"><a th:href="@{/admin/products}">Quản lý sản phẩm</a></div>
+                <div class="breadcrumb-item" th:text="${edit_product.productName()}"></div>
+            </div>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form th:action="@{'/admin/products/edit/' + ${edit_product.id()}}"
+                                  method="post"
+                                  th:object="${edit_product}">
+                                <div class="form-group">
+                                    <label>Danh mục:</label>
+                                    <select class="form-control" name="categoryID">
+                                        <option disabled>-- Chọn danh mục --</option>
+                                        <option th:each="c : ${list_categories}"
+                                                th:value="${c.id()}"
+                                                th:selected="${c.id() == edit_product.categoryID()}"
+                                                th:text="${c.categoryName()}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tên sản phẩm:</label>
+                                    <input type="text" class="form-control"
+                                           name="productName"
+                                           th:value="${edit_product.productName()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Giá bán:</label>
+                                    <input type="number" class="form-control"
+                                           name="price"
+                                           th:value="${edit_product.price()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Đơn vị tính:</label>
+                                    <input type="text" class="form-control"
+                                           name="unit"
+                                           th:value="${edit_product.unit()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Số lượng tồn:</label>
+                                    <input type="number" class="form-control"
+                                           name="quantity"
+                                           th:value="${edit_product.quantity()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-save"></i> Cập nhật
+                                            </button>
+                                        </div>
+
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <a th:href="@{/admin/products}"
+                                               class="btn btn-secondary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-arrow-left"></i> Quay lại
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

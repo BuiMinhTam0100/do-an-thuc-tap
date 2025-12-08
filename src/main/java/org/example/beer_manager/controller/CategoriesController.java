@@ -1,10 +1,6 @@
 package org.example.beer_manager.controller;
-
 import lombok.RequiredArgsConstructor;
 import org.example.beer_manager.dto.request.CategoriesRequest;
-import org.example.beer_manager.dto.request.SupplierRequest;
-import org.example.beer_manager.entity.Category;
-import org.example.beer_manager.entity.Supplier;
 import org.example.beer_manager.service.CategoriesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm mới sản phẩm</title>
+</head>
+<body>
+<div class="main-content" layout:fragment="content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Thêm mới sản phẩm</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a th:href="@{/}">Trang chủ</a></div>
+                <div class="breadcrumb-item"><a th:href="@{/admin/products}">Quản lý sản phẩm</a></div>
+                <div class="breadcrumb-item">Thêm mới sản phẩm</div>
+            </div>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Thêm mới sản phẩm</h4>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/admin/products/create}" th:object="${new_product}" method="post">
+
+                                <div class="form-group">
+                                    <label>Danh mục: <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" th:field="*{categoryID}">
+                                        <option value="">-- Chọn danh mục --</option>
+                                        <option th:each="c : ${new_categories}"
+                                                th:value="${c.id}"
+                                                th:text="${c.categoryName}">
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tên sản phẩm: <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control"
+                                           th:field="*{productName}"
+                                           placeholder="Nhập tên sản phẩm (Ví dụ: Bia Tiger)"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Đơn vị tính: <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control"
+                                           th:field="*{unit}"
+                                           placeholder="Ví dụ: Lon, Chai, Thùng, Két"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Số lượng nhập kho: <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control"
+                                           th:field="*{quantity}"
+                                           placeholder="Nhập số lượng (Ví dụ: 100)"
+                                           min="0"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Giá bán (VNĐ): <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control money"
+                                           th:field="*{price}"
+                                           placeholder="Nhập giá bán"
+                                           min="0"
+                                           required>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <button class="btn btn-primary btn-lg rounded-pill px-4 w-100" type="submit">
+                                                <i class="fas fa-save"></i> Lưu
+                                            </button>
+                                        </div>
+
+                                        <div class="col-12 col-sm-auto">
+                                            <a th:href="@{/admin/products}"
+                                               class="btn btn-outline-secondary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-times"></i> Hủy
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.money').forEach(function (input) {
+                input.addEventListener('input', function () {
+                    let value = this.value.replace(/,/g, '');
+                    if (!isNaN(value) && value.length > 0) {
+                        // Format lại có dấu phẩy
+                        this.value = Number(value).toLocaleString('en-US');
+                    }
+                });
+                input.closest("form").addEventListener("submit", function () {
+                    input.value = input.value.replace(/,/g, '');
+                });
+
+            });
+        });
+    </script>
+
+</div>
+</body>
+</html>

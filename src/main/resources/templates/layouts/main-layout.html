@@ -19,21 +19,21 @@
     <link rel="stylesheet" th:href="@{/assets/css/style.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/components.css}"/>
     <!-- Start GA -->
-    <div th:replace="components/script :: script"></div>
+    <div th:replace="~{components/script :: script}"></div>
     <!-- /END GA --></head>
 
 <body>
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
         <div class="navbar-bg"></div>
-        <div th:replace="components/navbar :: navbar"></div>
-        <div th:replace="components/sidebar :: sidebar"></div>
+        <div th:replace="~{components/navbar :: navbar}"></div>
+        <div th:replace="~{components/sidebar :: sidebar}"></div>
 
         <!-- Main Content -->
         <div class="main-content" layout:fragment="content">
         </div>
 
-        <div th:replace="components/footer :: footer"></div>
+        <div th:replace="~{components/footer :: footer}"></div>
     </div>
 </div>
 

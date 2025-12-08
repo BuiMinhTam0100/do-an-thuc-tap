@@ -41,6 +41,7 @@ public class SupplierService {
     public SupplierResponse delete(Integer id) {
         Supplier delete_by_id = findByID(id);
         delete_by_id.setDeletedAt(Instant.now());
+        supplierRepository.save(delete_by_id);
         return supplierMapper.toResponse(delete_by_id);
     }
 
