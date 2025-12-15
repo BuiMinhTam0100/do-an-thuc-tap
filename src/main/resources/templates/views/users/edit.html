@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Sửa người dùng: ' + ${edit_user.fullName()}"></title>
+</head>
+<body>
+<div class="main-content" layout:fragment="content">
+    <section class="section">
+
+        <div class="section-header">
+            <h1>Sửa người dùng</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a th:href="@{/}">Trang chủ</a></div>
+                <div class="breadcrumb-item"><a th:href="@{/admin/users}">Quản lý người dùng</a></div>
+                <div class="breadcrumb-item" th:text="${edit_user.fullName()}"></div>
+            </div>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form th:action="@{'/admin/users/edit/' + ${edit_user.id()}}"
+                                  method="post"
+                                  th:object="${edit_user}">
+                                <div class="form-group">
+                                    <label>Quyền tài khoản:</label>
+                                    <select class="form-control" name="categoryID">
+                                        <option disabled>-- Chọn quyền --</option>
+                                        <option th:each="c : ${list_role}"
+                                                th:value="${c.id}"
+                                                th:selected="${c.id == edit_user.roleId()}"
+                                                th:text="${c.roleName}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Họ và tên:</label>
+                                    <input type="text" class="form-control"
+                                           name="fullName"
+                                           th:value="${edit_user.fullName()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tên người dùng:</label>
+                                    <input type="text" class="form-control"
+                                           name="username"
+                                           th:value="${edit_user.username()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-save"></i> Cập nhật
+                                            </button>
+                                        </div>
+
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <a th:href="@{/admin/users}"
+                                               class="btn btn-secondary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-arrow-left"></i> Quay lại
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

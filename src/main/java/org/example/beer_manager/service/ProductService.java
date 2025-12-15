@@ -3,10 +3,8 @@
     import lombok.RequiredArgsConstructor;
     import org.example.beer_manager.dto.request.ProductRequest;
     import org.example.beer_manager.dto.response.ProductResponse;
-    import org.example.beer_manager.dto.response.ProductResponse;
     import org.example.beer_manager.entity.Category;
     import org.example.beer_manager.entity.Product;
-    import org.example.beer_manager.entity.Supplier;
     import org.example.beer_manager.mapper.ProductMapper;
     import org.example.beer_manager.repo.CategoryRepository;
     import org.example.beer_manager.repo.ProductRepository;

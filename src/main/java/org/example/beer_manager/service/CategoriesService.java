@@ -1,16 +1,11 @@
 package org.example.beer_manager.service;
-
 import lombok.RequiredArgsConstructor;
 import org.example.beer_manager.dto.request.CategoriesRequest;
-import org.example.beer_manager.dto.request.SupplierRequest;
-import org.example.beer_manager.dto.response.CategoriesResponse;
 import org.example.beer_manager.dto.response.CategoriesResponse;
 import org.example.beer_manager.entity.Category;
-import org.example.beer_manager.entity.Supplier;
 import org.example.beer_manager.mapper.CategoriesMapper;
 import org.example.beer_manager.repo.CategoryRepository;
 import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.List;
 

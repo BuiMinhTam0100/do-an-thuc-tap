@@ -18,6 +18,7 @@ import java.time.Instant;
 public class User {
     @Id
     @Column(name = "user_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "full_name", nullable = false)
@@ -35,7 +36,7 @@ public class User {
 
     @ColumnDefault("1")
     @Column(name = "status")
-    private Byte status;
+    private Byte status = 1;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
     @Column(name = "created_at")
