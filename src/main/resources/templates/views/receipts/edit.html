@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Sửa sản phẩm: ' + ${edit_receipt.supplierName()}"></title>
+</head>
+<body>
+<div class="main-content" layout:fragment="content">
+    <section class="section">
+
+        <div class="section-header">
+            <h1>Sửa sản phẩm</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a th:href="@{/}">Trang chủ</a></div>
+                <div class="breadcrumb-item"><a th:href="@{/admin/receipts}">Quản lý sản phẩm</a></div>
+                <div class="breadcrumb-item" th:text="${edit_receipt.supplierName()}"></div>
+            </div>
+        </div>
+
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form th:action="@{'/admin/receipts/edit/' + ${edit_receipt.receiptId()}}"
+                                  method="post"
+                                  th:object="${edit_receipt}">
+                                <div class="form-group">
+                                    <label>Nhà cung cấp:</label>
+                                    <select class="form-control" name="categoryID">
+                                        <option disabled>-- Chọn nhà cung cấp --</option>
+                                        <option th:each="c : ${get_supplier}"
+                                                th:value="${c.id()}"
+                                                th:selected="${c.id() == edit_receipt.receiptId()}"
+                                                th:text="${c.supplierName()}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tổng tiền:</label>
+                                    <input type="number" class="form-control"
+                                           name="totalAmount"
+                                           th:value="${edit_receipt.totalAmount()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-save"></i> Cập nhật
+                                            </button>
+                                        </div>
+
+                                        <div class="col-12 col-sm-auto mb-2">
+                                            <a th:href="@{/admin/receipts}"
+                                               class="btn btn-secondary btn-lg rounded-pill px-4 w-100">
+                                                <i class="fas fa-arrow-left"></i> Quay lại
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

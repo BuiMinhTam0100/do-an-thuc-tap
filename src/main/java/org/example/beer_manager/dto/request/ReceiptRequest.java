@@ -1,9 +1,10 @@
 package org.example.beer_manager.dto.request;
 
-public record SupplierRequest(
+import java.math.BigDecimal;
+
+public record ReceiptRequest(
         Integer supplierId,
         String supplierName,
-        String phone,
-        String address
+        BigDecimal totalAmount
 ) {
 }

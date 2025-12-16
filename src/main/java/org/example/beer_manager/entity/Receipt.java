@@ -40,4 +40,7 @@ public class Receipt {
     @LastModifiedDate
     private Instant updatedAt;
 
+    @Column(name = "deleted_at")
+    private Instant deletedAt;
+
 }

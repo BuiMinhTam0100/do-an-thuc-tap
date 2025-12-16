@@ -45,6 +45,6 @@ public class CategoriesService {
     }
 
     public Category findByID(Integer id) {
-        return categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Không tìm thấy ID này!"));
+        return categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Không tìm thấy danh mục này!"));
     }
 }

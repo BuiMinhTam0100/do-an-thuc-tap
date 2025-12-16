@@ -46,6 +46,6 @@ public class SupplierService {
     }
 
     public Supplier findByID(Integer id) {
-        return supplierRepository.findById(id).orElseThrow(() -> new RuntimeException("Không tìm thấy ID này!"));
+        return supplierRepository.findById(id).orElseThrow(() -> new RuntimeException("Không tìm thấy nhà cung cấp này!"));
     }
 }

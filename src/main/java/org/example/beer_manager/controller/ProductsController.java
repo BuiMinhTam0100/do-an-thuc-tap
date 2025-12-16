@@ -1,7 +1,5 @@
 package org.example.beer_manager.controller;
-
 import lombok.RequiredArgsConstructor;
-import org.example.beer_manager.dto.request.CategoriesRequest;
 import org.example.beer_manager.dto.request.ProductRequest;
 import org.example.beer_manager.service.CategoriesService;
 import org.example.beer_manager.service.ProductService;

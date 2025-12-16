@@ -1,5 +1,4 @@
 package org.example.beer_manager.controller;
-
 import lombok.RequiredArgsConstructor;
 import org.example.beer_manager.dto.request.SupplierRequest;
 import org.example.beer_manager.entity.Supplier;
